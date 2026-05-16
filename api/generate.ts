@@ -48,7 +48,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ error: "API key not configured on server." });
   }
 
-  const randomIndustry = INDUSTRIES[Math.floor(Math.random() * INDUSTRIES.length)];
+  const randomIndustry =
+    INDUSTRIES[Math.floor(Math.random() * INDUSTRIES.length)];
 
   const prompt = `
     Act as a senior Product Management researcher and professor at a world-class business school (HBS, Stanford GSB, or INSEAD).
@@ -109,7 +110,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const ai = new GoogleGenAI({ apiKey });
 
     const responseStream = await ai.models.generateContentStream({
-      model: "gemini-3.1-flash-lite-preview",
+      model: "gemini-3.1-flash-lite",
       contents: prompt,
       config: {
         temperature: 1.0,
